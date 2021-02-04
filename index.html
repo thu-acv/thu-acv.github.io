@@ -1,0 +1,278 @@
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Advanced Computer Vision</title>
+
+  <!-- bootstrap -->
+  <link rel="stylesheet" href="https://lib.baomitu.com/twitter-bootstrap/3.2.0/css/bootstrap.min.css">
+  <link rel="stylesheet" href="https://lib.baomitu.com/twitter-bootstrap/3.2.0/css/bootstrap-theme.min.css">
+
+  <!-- Google fonts -->
+  <!-- <link href='http://fonts.googleapis.com/css?family=Roboto:400,300' rel='stylesheet' type='text/css'> -->
+
+  <!-- Google Analytics -->
+  <script crossorigin="anonymous" integrity="sha384-FEGyjUy5gRLS0YTIuPrb0rtG7DylcjirsKvwHlrZbyC00p61NrMRRoBkJVxgImEi" src="https://lib.baomitu.com/analytics.js/2.9.1/analytics.js"></script>
+
+  <link rel="stylesheet" type="text/css" href="css/style.css" />
+  <link rel="stylesheet" type="text/css" href="css/jquery-ui.min.css">
+
+  <script language="javascript" type="text/javascript" src="js/jquery-1.8.3.min.js"></script>
+  <script language="javascript" type="text/javascript" src="js/flot/jquery.flot.js"></script>
+  <script type="text/javascript" src="js/jquery-ui.min.js"></script>
+  <script type="text/javascript" src="js/convnet-min.js"></script>
+  <script language="javascript" type="text/javascript" src="js/facesketch.js"></script>
+  <script src="https://lib.baomitu.com/twitter-bootstrap/3.2.0/css/bootstrap.min.css"></script>
+  
+</head>
+
+<body>
+
+<!-- Live Demo -->
+<div id="header">
+  <a href="">
+    <img src="images/logo_2x.png" title="SenseTime" style="height:70px; position: absolute; left: 20px; top: 20px; ">
+  </a>
+  <h1> 高等计算机视觉 Advanced Computer Vision </h1>
+</div>
+
+<!-- <div id="teaser">
+  <div class="container">
+    <div class="demo-block ">
+      <p>Sketch</p>
+      <canvas id="canv_original"></canvas>
+    </div>
+
+    <div id="convactmap">
+      <div class="demo-block " id="convnetvis">
+        <p>Layer 4</p>
+        <canvas id="layer_1"></canvas>
+      </div>
+      <div class="demo-block " id="convnetvis">
+        <p>Layer 5</p>
+        <canvas id="layer_2"></canvas>
+      </div>
+      <div class="demo-block " id="convnetvis">
+        <p>Layer 6</p>
+        <canvas id="layer_3"></canvas>
+      </div>
+      <div class="demo-block " id="convnetvis">
+        <p>Layer 7</p>
+        <canvas id="layer_4"></canvas>
+      </div>
+    </div>
+
+    <div class="demo-block ">
+      <p>Net Output</p>
+      <canvas id="canv_net"></canvas>
+    </div>
+
+    <div class="demo-block ">
+      <p>Photo</p>
+      <canvas id="canv_sketch"></canvas>
+    </div>
+
+
+    <div class="demo-block">
+      <p>Training <span id="report"></span></p>
+      <div id="placeholder" class="demo-placeholder"></div>
+    </div>
+
+    <p id="demomsg" class=" clear"></p>
+
+
+  </div>
+  <span id="convask">Explain   &dArr;</span>
+</div> -->
+<!-- End of Live Demo -->
+
+
+<!-- <div class="container">
+  <div id="explain">
+    <h2> Live Demo: Sketches to Photos </h2>
+    The live demo utilizes a Neural Network to synthesis photos with face sketches, which is helpful for various applications, <em>e.g.,</em> identifying the suspect.  
+    The Neural Network in this example is regressing pixel values live in your browser based on <a href="http://cs.stanford.edu/people/karpathy/convnetjs/">ConvNetJS</a>, a JavaScript based ConvNet library. It takes a pixel of a sketch and transforms it through a series of functions into RGB values as the output. 
+    The transformed representations in this visualization can be losely thought of as the activations of the neurons along the way. 
+    The Sketch-Photo pairs are from the <a href="http://mmlab.ie.cuhk.edu.hk/archive/facesketch.html">CUHK Face Sketch Database (CUFS)</a>. 
+    By the end of the class, you will know exactly what all these numbers mean.
+  </div>
+</div>  -->
+
+<div class="container sec">
+<div class="row">
+  <div class="col-md-6">
+    <h2>Instructors</h2>
+
+    <div class="instructor">
+      <a href="speakers.html" target="_blank">
+      <div class="instructorphoto"><img src="images/yjj.jpeg"></div>
+      <div>Junjie Yan</div></a>
+    </div>
+
+    <div class="instructor">
+      <a href="speakers.html" target="_blank">
+      <div class="instructorphoto"><img src="images/ly.jpeg"></div>
+      <div>Yu Liu</div></a>
+    </div>
+
+    <div class="instructor">
+      <a href="speakers.html" target="_blank">
+      <div class="instructorphoto"><img src="images/lhy.png"></div>
+      <div>Hongyang Li</div></a>
+      <!-- <div style="padding-left: 0em;">TA</div> -->
+    </div>
+
+  </div>
+
+  <div class="col-md-4">
+    <h2>Guest Speaker</h2>
+
+    <div class="instructor">
+      <a href="speakers.html" target="_blank">
+      <div class="instructorphoto"><img src="images/sjp.png"></div>
+      <div>Jianping Shi</div></a>
+    </div>
+
+    <div class="instructor">
+      <a href="speakers.html" target="_blank">
+      <div class="instructorphoto"><img src="images/qc.png"></div>
+      <div>Chen Qian</div></a>
+    </div>
+    
+  </div>
+
+</div>
+<br>
+</div>
+
+<div class="sechighlight">
+<div class="container sec">
+  <h2>Annoucements</h2>
+  <!-- [] The project presentation will be held on the whole day of May 2nd at ERB 408. Details <a href="tutorial.html">here.</a> <br>
+  [Mar 13] Please send your final project proposals to your TA-in-charge by Mar 24. Details on the final project can be found <a hres="final_project.html">here</a>. <br>
+  [Mar 5] <a href="assignment.html">Assignment 2</a> is now available. Please submit your assignments through BlackBoard by March 28. <br>
+  [Feb 20] For auditing students who need a certificate, please send your assignment1 to yangli@ee.cuhk.edu.hk with keyword [ELEG5491] in the email subject field. <br>
+  [Feb 13] We will have an one-hour open-book quiz on Feb 19, at the usual lecture time and classroom. The quiz will cover all lectures before and including CNN <br>
+  [Jan 28] <a href="assignment.html">Assignment 1</a> is now available. Please submit your assignments through BlackBoard by Feb 21. <br>
+  [Jan 24] Optional tutorials start from this week. You can find the tutorial syllabus and slides <a href="tutorial.html">here.</a> <br>
+  [Jan 9] If you need the instructor's signature to select this course, please bring your CS-1 form to Room 304, SHB. <br> -->
+  [Dec 17, 2020] Welcome to Advanced Computer Vision! <br>
+</div>
+</div>
+
+
+  <div class="container sec">
+
+  <h2>Course Description</h2>
+
+  <div id="coursedesc">
+    This course involves computer vision, signal processing, deep learning and other fields of knowledge. It elaborates with the latest academic achievements and practical cases of industrial scenes and explain the classic and state-of-the-art methods in computer vision. By studying this course, students can learn basic theories and advanced methods in computer vision, and by understanding and exploring practical problems in the industry, enhance their cognitive ability and innovative ability to solve problems in computer vision. <br> <br>
+    Chapter 1 mainly introduces the concept of computer vision, image composition and basic image processing algorithms and introduces the neural network and deep learning framework. Chapter 2 explains in detail the most cutting-edge research direction calculation method in the field of vision and the algorithm model optimization and performance improvement methods in visual scenes. Chapter 3 covers the practical problems faced by computer vision and the solution ideas in combination with the specific scenes of industry. <br> <br>
+
+    As a computer vision course offered by university and industry, the course has four advantages: <br>
+<ul class="a">
+  <li> <bf>Focus on Both Classics and Frontiers: </bf> This course starts with the basics of computer vision and classical algorithms, and at the same time involves the most cutting-edge algorithms in this field, and covers the current knowledge in the field of computer vision;</li>
+  <li> <bf>Combination of Academia and Industry:</bf> The course teaching will combine the algorithm theory of academia with the most realistic application in the industry, and improve your application and practical ability through analysis and experiments;</li>
+  <li> <bf>Teaching from the shallower to the deeper:</bf> Compared with similar computer vision courses, this course comprehensively sorts out the knowledge structure in the field of computer vision，and is very friendly to greenhands. This course will explain in-depth algorithms and cases, which will bring great improvement to students with a foundation;</li>
+  <li> <bf>University-Industry joint teaching:</bf> As a leading company in the field of computer vision, SenseTime will introduce a wealth of practical cases and computing resources to the course. Furthermore, it will combine the high-quality teaching experience so that students can better complete the course and improve personal competitiveness.</li>
+</ul>
+  </div>
+
+  <div style="text-align:center; padding:40px 0px 40px 0px;">
+  <a href="syllabus.html" style="margin-right:50px" target="_blank">
+    <button type="button" class="btn btn-primary btn-lg">Lectures</button>
+  </a>
+  <!-- <a href="tutorial.html" style="margin-right:50px" target="_blank">
+    <button type="button" class="btn btn-info btn-lg">Tutorials</button>
+  </a> -->
+  <a href="assignment.html" style="margin-right:50px" target="_blank">
+    <button type="button" class="btn btn-success btn-lg">Assignments</button>
+  </a>
+  <a href="final_project.html" style="margin-right:50px" target="_blank">
+    <button type="button" class="btn btn-warning btn-lg">Final Project</button>
+  </a>
+</div>
+</div>
+
+<div class="container sec">
+  <div class="row">
+    <div class="col-md-4">
+      <h2>Time and Venue</h2>
+      Spring Term (February - June, 2021)<br>
+      <b>Lecture:</b> 
+	  <ul class="a">
+  		<li> Every Friday, 9:50am-11:25am <br> TBD </li>
+	  </ul>
+    </div>
+    
+    <div class="col-md-4">
+      <h2>Contact information</h2>
+      Prof. Li Yali:  liyali13@mail.tsinghua.edu.cn<br>
+      Dr. Yan Junjie:  yanjunjie@sensetime.com<br>
+      Dr. Liu Yu:  liuyu@sensetime.com<br>
+      Dr. Li Hongyang:  lihongyang@senseauto.com<br>
+      Chen Qingchen:  chenqingchen@sensetime.com<br>
+
+    </div>
+    <div class="col-md-4">
+      <h2>Grading Policy</h2>
+      3 assignments: 30%<br>
+      2 quizzes: 20%<br>
+      Final Project: 50%<br>
+    </div>
+    <!--
+    <div class="col-md-3">
+      <h2>WeChat Group</h2>
+      You are welcomed to join the WeChat group for discussion on this course.<br>
+      <img src="images/wechat_group1.jpg" style="height:200px;">
+    </div> -->
+  </div>
+
+
+<div class="sechighlight">
+<div class="container sec">
+  <h2>FAQ</h2>
+
+    <!-- <div class="qqa">
+    <div class="qq">I am a student outside the EE department, can I register in the class?</div>
+    <div class="qa">Yes, you are welcome to register. For graduate students outside our EE department, you can fill in 
+      <a href="https://www.gs.cuhk.edu.hk/download/CS1.pdf">this form</a> and ask approval from both your supervisor and the course instructor during the add/drop period.</div>
+  </div> -->
+
+  <div class="qqa">
+    <div class="qq">Is this course hard for undergrad students?</div>
+    <div class="qa">The course is designed for senior undergrad and graduate students. We will show lots of interesting cases and hands-on experience about deep learning models. Some part of the lectures requite calculus and linear algebra, but we will walk you through those knowledge. We think for undergrads, you will learn a lot at the end of the course through lectures, tutorials and the final project.</div>
+    <div class="qq">Can I work in groups for the Final Project?</div>
+    <div class="qa">Yes, in groups of up to three people.</div>
+  </div>
+
+    <!-- <div class="qq">Can I work in groups for the Final Project?</div> -->
+    <!-- <div class="qa">Yes, in groups of up to two people.</div> -->
+    <!-- <div class="qa">No. The final project is done individually and details will be announced later.</div>
+  </div> -->
+
+</div>
+</div>
+
+<div class="container sec">
+  <h2>Resources</h2>
+  <ul class="a">
+    <li> CMU: 16-385 Computer Vision Spring 2020, <a href="http://www.cs.cmu.edu/~16385/">link</a></li>
+    <li> MIT: CSAIL-6.819/6.869 Advances in Computer Vision, <a href="http://6.869.csail.mit.edu/fa19/">link</a> </li>
+    <li> Stanford: CS231n, <a href="http://cs231n.stanford.edu/">link</a></li>
+  </ul>
+</div>
+
+<!-- <div class="sechighlight"> -->
+<div id="footer">
+  <div id="footermsg">Courtesy of website design: <a href="http://cs231n.stanford.edu/">cs231n</a> at Stanford.</div>
+</div>
+<!-- </div> -->
+
+</body>
+
+</html>
