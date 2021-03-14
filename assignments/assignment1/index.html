@@ -74,7 +74,7 @@
 
 <h3 id="goals"><strong>Goals</strong></h3>
 
-<p>在给定网络结构运行latency以及参数量的限制下，实现对于给定数据集（人脸识别子集）上的模型设计、训练以及验证调优。数据集中会有当前工业界和学术集通用的研究问题，如类别不均衡、数据噪声等因素存在。</p>
+<p>在给定网络结构Flops以及参数量的限制下，实现对于给定数据集（人脸识别子集）上的模型设计、训练以及验证调优。数据集中会有当前工业界和学术集通用的研究问题，如类别不均衡、数据噪声等因素存在。</p>
 <p>作业考察对于神经网络标准训练流程的设计与处理，包括数据分析处理、模型设计、训练算法设计、模型调优、结果分析等基本能力，需要基于给定的数据集实现对于评测集的性能调优，记录实验过程及调优方案并且完成一些问答题目，包括：</p>
 
 <ul>
@@ -87,7 +87,26 @@
 
 <h3 id="q0-description"><strong>Description</strong></h3>
 
-<p> Please refer to the <a href="">here</a>. page for additional details on the dataset. 
+<p> Training data. </p>
+<ul>
+  <li>The number of images is on the order of 10^5；</li>
+  <li>The training data contains label noise；
+			intra-class noise: different identities with same label ID.
+			inter-class noise: same identity with different label IDs.</li>
+</ul>
+
+<p> Evaluation data. </p>
+<ul>
+  <li>The number of images is on the order of 10^4；</li>
+</ul>
+
+<p> <strong>Constraint</strong></p>
+<ul>
+  <li><strong>The Flops of submitted model should be less than 1G.</strong></li>
+  <li><strong>External training data is not allowed.</strong></li>
+</ul>
+
+<p> Please refer to the <a href="">here</a>[coming soon]. page for additional details on the dataset. 
 Additional data usage is not allowed. </p>
 
 <h3 id="q0-evaluation"><strong>Evalution</strong></h3>
@@ -101,7 +120,7 @@ Additional data usage is not allowed. </p>
 
 <p> Install Pytorch： refer to <a> <a href="https://pytorch.org">Pytorch</a> </p>
 <p> Download Dataset. Next, you will need to download the dataset. (TBD) </p>
-<p> Design your own training framework. </p>
+<p> Design your own training framework or use our demo code. </p>
 <p> Improve your training and understand your feature representation. </p>
 
 <h3 id="q1-customizing-dataset-10-points">Q1: Customizing Dataset (10 points)</h3>
