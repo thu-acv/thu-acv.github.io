@@ -64,100 +64,95 @@
   <p>This assignment is due on <strong> Apr. 2, 2021 </strong> at 11:59pm UTC+8.</p>
 	<p><strong>Please refer to the <a href="https://drive.google.com/file/d/1Gp7XL8Z5gby77O2foq2fAXuG5EJT2Viv/view?usp=sharing">Demo Code</a> and <a href="https://drive.google.com/file/d/13PVX9_0uu3MPrH2q3bz2bets85WLowSE/view?usp=sharing">Demo Dataset</a> for testing.</strong><br></p>
 	<p>Full code and dataset will be released on <strong>Mar. 19, 2021</strong>.</p>
+
+<h3 id="goals"><strong>1. Introduction to Face Recognition</strong></h3>
+
+<img src="../../images/pipeline.png" width="800" height="160"/>
+
+<p> The image above shows the standard pipeline of <strong>face recognition.</strong></p>
+<p> There are three sub-modules in full pipeline of the <strong>face recognition</strong>: <strong>face detection</strong>, <strong>face alignment</strong> and <strong>face recognition</strong></p>
+
+<p> In this assignment, we only focus on the face recognition task as shown in the red box </p>
+
+<h3 id="goals"><strong>2. Target of the Assignment</strong></h3>
+
+<p> We will provide a standard sub-dataset and the testset. Moreover, we also provide the demo code for baseline training. </p>
+<p> If you want to achieve high performance, you need to know the following knowledge.</p>
+
 <ul>
-  <li><a href="#goals">Goals</a></li>
-  <li><a href="#q1-customizing-dataset-10-points"> Q1: Customizing Dataset (10 points)</a></li>
-  <li><a href="#q2-data-analysis-and-evaluation-metric-understand-20-points"> Q2: Data Analysis and Evaluation Metric Understand (20 points)</a></li>
-  <li><a href="#q3-model-designing-and-training-algorithm-designing-40-points"> Q3: Model Designing and Training Algorithm Designing (40 points)</a></li>
-  <li><a href="#q4-optimizer-setting-and-performance-improvement-30-points"> Q4: Optimizer Setting and Performance Improvement (30 points)</a></li>
-  <li><a href="#submitting-your-work">Submitting your work</a></li>
+  <li> Learn the standard skills for basic model training.</li>
+  <li> Learn the skills for adjusting the hyperparameters in training. </li>
+  <li> Learn to how to compute the Flops of a standard CNN architecture. We suggest <strong>Thop</strong>.</li>
+  <li> Learn basic data augmentation. </li>
+  <li> Learn the evaluation metric (we provide the evaluation code). </li>
+  <li> Learn the noise-roubust model training methods. We suggest you read [1][2].</li>
+</ul>
+<p> [1]: ArcFace: Additive Angular Margin Loss for Deep Face Recognition.<br>
+ [2]: Towards Flops-constrained Face Recognition.<br>
+[3]: Sub-center ArcFace: Boosting Face Recognition by Large-scale Noisy Web Faces. </p>
+
+
+
+<p><strong> Requirements of Assignment 1: </strong></p>
+<ul>
+  <li> Flops of the submitted for processing single image should be <font color="red">less than 1G. (Madd < 500M)</font>.</li>
+  <li> <font color="red">External dataset is not allowed</font>.</li>
+  <li> You can only submit <font color="red">two times</font> each day.</li>
 </ul>
 
-<h3 id="goals"><strong>Goals</strong></h3>
-
-<p>在给定网络结构Flops以及参数量的限制下，实现对于给定数据集（人脸识别子集）上的模型设计、训练以及验证调优。数据集中会有当前工业界和学术集通用的研究问题，如类别不均衡、数据噪声等因素存在。</p>
-<p>作业考察对于神经网络标准训练流程的设计与处理，包括数据分析处理、模型设计、训练算法设计、模型调优、结果分析等基本能力，需要基于给定的数据集实现对于评测集的性能调优，记录实验过程及调优方案并且完成一些问答题目，包括：</p>
-
+<p><strong> Finaly Report Submission: </strong></p>
 <ul>
-  <li>熟悉标准的神经网络训练代码搭建；</li>
-  <li>标准数据集的预处理流程；</li>
-  <li>分析数据集分布，确定Optimizer的配置、Augmentation的选取、训练优化的配置，并实践运用；</li>
-  <li>熟悉模型Flops和参数量计算，网络模型结构设计与调优；</li>
-  <li>掌握常用Evaluation Metrics的计算方式，了解基本的模型性能分析方法以及特征可视化方法;</li>
+  <li>Introduce your <strong>data processing</strong>.</li>
+  <li>Introduce your <strong>network architecture</strong> and the corresponding Flops.</li>
+  <li>Introduce your <strong>training method</strong>.</li>
+  <li>Introduce your <strong>performance improvement</strong>.</li>
+  <li>Introduce your <strong>understanding about this whole training stage</strong>.</li>
 </ul>
 
-<h3 id="q0-description"><strong>Description</strong></h3>
+<h3 id="q0-description"><strong>3. Description of the Training Dataset</strong></h3>
 
-<p> Training data. </p>
+<p> We provide a standard sub-dataset for this assignment and the corresponding testset. <br>
+You need to train your model on the training dataset and submit the feature representation of the testset.</p>
+<p> <font color="red"><strong> Note that the order of the features in the submitted file should be the same as the given image order</strong></font>.</p>
+<p><strong> Introduction to training dataset.</strong></p>
 <ul>
-  <li>The number of images is on the order of 10^5；</li>
-  <li>The training data contains label noise；
-			intra-class noise: different identities with same label ID.
-			inter-class noise: same identity with different label IDs.</li>
+  <li>The number of images is 55K; </li>
+  <li>The number of identities is 1K; </li>
+  <li>The training data contains about 20% label noise; </li>
 </ul>
 
-<p> Evaluation data. </p>
+<p> Introduction to testset.</p>
 <ul>
-  <li>The number of images is on the order of 10^4；</li>
+  <li>The number of images is 52,000；</li>
 </ul>
 
-<p> <strong>Constraint</strong></p>
-<ul>
-  <li><strong>The Flops of submitted model should be less than 1G.</strong></li>
-  <li><strong>External training data is not allowed.</strong></li>
-</ul>
 
 <p> <strong>Please refer to the <a href="https://drive.google.com/file/d/1Gp7XL8Z5gby77O2foq2fAXuG5EJT2Viv/view?usp=sharing">Demo Code</a> and <a href="https://drive.google.com/file/d/13PVX9_0uu3MPrH2q3bz2bets85WLowSE/view?usp=sharing">Demo Dataset</a> for testing.</strong><br>
-Full code and dataset will be released on <strong>Mar. 19, 2021</strong>.<br>
-Additional data usage is not allowed. </p>
+Full code and dataset will be released on <strong>Mar. 19, 2021</strong>.</p>
 
-<h3 id="q0-evaluation"><strong>Evalution</strong></h3>
+<h3 id="q0-evaluation"><strong>4. Evalution Metric</strong></h3>
 
-<p> Submissions are evaluated by computing TPR (true positive rate) at a specific FPR(false positive rate). The metric is described as follows: </p>
+<p> Submissions are evaluated by computing <font color="red">TPR (true positive rate)@FPR=1e-1 (false positive rate)</font>. The metric is described as follows: </p>
 <p> <strong>TPR</strong> = TP(true positives) / (TP(true positives) + FN(false negatives)) </p>
 <p> <strong>FPR</strong> = FP(false positives) / (FP(false positives) + TN(true negatives)) </p>
-<p> The final TPR is computed at <strong>FPR=1e-5</strong>. The participants will be ranked on this final metric. </p>
+<p> We also provide the evaluation code and you can obtain the detailed information from it. </p>
 
-<h3 id="q0-setup"><strong>Pipeline</strong></h3>
+<h3 id="q0-setup"><strong>5. Start</strong></h3>
 
-<p> Install Pytorch： refer to <a> <a href="https://pytorch.org">Pytorch</a> </p>
-<p> Download Dataset. Next, you will need to download the dataset. (TBD) </p>
-<p> Design your own training framework or use our demo code. </p>
-<p> Improve your training and understand your feature representation. </p>
+<p> <font color="red">Please refer to the README in demo code for start. </font></p>
 
-<h3 id="q1-customizing-dataset-10-points">Q1: Customizing Dataset (10 points)</h3>
-
-<p>快速处理新数据集的思路：</p>
+<h3 id="q0-setup"><strong>6. Advice</strong></h3>
 
 <ul>
-  <li>了解数据集的image 和 label的对应关系，并将其处理成统一的格式；</li>
-  <li>编写对应的Dataset和Dataloader来处理该数据格式；</li>
+  <li>Data augmentation is important when the training samples is insufficient. You can try to adopt different types of data augmentation
+to improve your generalized ability of your model. </li>
+  <li>The choice of the training hyperparameters is important. You can try to adopt different types of learning rate decay such as Cosine Manner;
+  And also, you can try to adjust the weight_decay and other optimizors.</li>
+  <li>The architecture is important for roubust representa learning. We provide the popular <strong>RegNet</strong> and you can try to modify it or deisgn more powerful architecture.</li>
+  <li>Loss function is important for face recognition, especially with noisy data. You can try to use some noise-roubust loss function, such as ArcNegFace in [2] or Sub-center ArcFace in [3].</li>
 </ul>
 
-<p><strong> 编程作业： </strong>在这一步中，请编写对应的Dataset和Dataloader来处理我们提供的数据集。 </p>
-
-<h3 id="q2-data-analysis-and-evaluation-metric-understand-20-points">Q2: Data Analysis and Evaluation Metric Understand (20 points)</h3>
-
-<p>开始一个训练之前需要对数据和评价指标有一个深入的理解。</p>
-<p>是否存在类别不均衡问题？是否存在数据遮挡？是否存在部分噪声？</p>
-
-<p><strong> 编程作业： </strong>对于大部分计算机视觉任务来说，数据增强是必不可少的一环，但不同的数据分布对于数据增强方式的需求不同，在这一步需要探究一些数据增强方式的影响。</p>
-
-<p><strong> 书面作业： </strong>解释不同的数据增强做了什么，对模型有什么影响。</p>
-
-<h3 id="q3-model-designing-and-training-algorithm-designing-40-points">Q3：Model Designing and Training Algorithm Designing (40 points)</h3>
-
-<p>在设计模型之前，需要熟悉模型参数量和Flops的计算，了解不同的操作单元在神经网络中的组合方式。这一步需要确定网络结构设计和对应的训练算法（包括损失函数的选择，优化方法的选择，正则化方式的选择）</p>
-
-<p><strong> 编程作业： </strong>根据前面分析的数据分布以及评价指标，设计神经网络模型结构以及确定对应的训练优化算法，可使用tensorboard进行模型结构可视化以帮助模型结构调优。结构前面编写的Dataset和Dataloader实现基础模型的训练和评测。</p>
-
-<p><strong> 书面作业： </strong>结合整个训练过程和设计，分析不同的训练优化算法和超参对于模型性能的影响，分析不同操作单元的选择对于模型效率的影响。</p>
-
-<h3 id="q4-optimizer-setting-and-performance-improvement-30-points">Q4: Optimizer Setting and Performance Improvement. (30 points)</h3>
-
-<p><strong> 书面作业： </strong>结合整个调优过程，深入理解神经网络训练优化过程。</p>
-
-<h3 id="submitting-your-work">Submitting your work</h3>
+<h3 id="submitting-your-work"><strong>7. Submit Your Project and Final Report</strong></h3>
 <p>TBD</p>
   </article>
 
