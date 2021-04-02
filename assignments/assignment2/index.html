@@ -63,73 +63,88 @@
   <img src="../../images/coco.png"/>
 
   <article class="post-content">
-  <p>This assignment is due on <strong> TBD </strong> at 11:59pm PDT.</p>
-
-<details>
-<summary>Jupyter Starter Code Download Link</summary>
-
- <ul>
-  <li><a href="assignment2_jupyter.zip">Jupyter starter code</a></li>
-</ul>
-</details>
+    <p>This assignment is due on <strong> Mar. 7, 2021 </strong> at 11:59pm UTC+8.</p>
+    <p><strong>Please download training set (images&label) and testing set (only images) from <td><haha>Google Drive</haha></td> </strong><br><br>
+      <!-- <a href="">Google Drive</a> -->
+    Download the data from <td><haha>Tsinghua Cloud</haha></td> if you can't open the link above.
+    </p>
 
 <ul>
-  <li><a href="#goals">Goals</a></li>
-  <li><a href="#q0-setup-mmdetection">Setup MMDetection</a></li>
-  <li><a href="#q1-customizing-dataset-10-points">Q1: Customizing Dataset (10 points)</a></li>
-  <li><a href="#q2-data-analysis-and-data-augmentation-20-points">Q2: Data Analysis and Data Augmentation (20 points)</a></li>
-  <li><a href="#q3-model-designing-and-optimizer-setting-50-points">Q3: Model Designing and Optimizer Setting (50 points)</a></li>
-  <li><a href="#q4-evaluation-metrics-and-visualization-tools-20-points">Q4: Evaluation Metrics and Visualization tools (20 points)</a></li>
+  <li><a href="#goals">Introduction to the competition</a></li>
+  <li><a href="#q0-setup-mmdetection">Getting Started</a></li>
+  <li><a href="#q1-customizing-dataset-10-points">Add Customized Dataset</a></li>
+  <li><a href="#q2-data-analysis-and-data-augmentation-20-points">Data Analysis and Data Augmentation</a></li>
+  <li><a href="#q3-model-designing-and-optimizer-setting-50-points">Model Designing and Optimizer Setting</a></li>
+  <li><a href="#q4-evaluation-metrics-and-visualization-tools-20-points">Model Ensemble</a></li>
   <li><a href="#submitting-your-work">Submitting your work</a></li>
 </ul>
 
-<h3 id="goals">Goals</h3>
+<h3 id="goals"><strong>1. Introduction to the competition</strong></h3>
 
-<p>作业考察设计与训练检测器的完整流程，需要补充样例代码中空缺的部分，记录实验并且完成一些问答题目，包括:</p>
+<p>This mini competition consists of two tasks, <strong>object detection</strong> and <strong>pedestrian detection</strong>. You should train two models to solve them respectively.</p>
 
+<p>The goal of the object detection task is to recognize objects from a number of visual object classes in <strong> street scenes </strong>. The detection of foreground objects is among the most critical requirements to facilitate self-driving applications. 6 of the most common object classes have been selected are: 1). Person; 2). Car; 3). Cyclist; 4). Tram; 5). Truck; 6). Van.</p>
+
+<p>The goal of the pedestrian detection task is to design a detection model robust to crowd scenes. In crowd scenarios, different people occlude with each other with high overlaps and cause great difficulty of crowd occlusion. </p>
+
+
+<p><strong> Requirements of Assignment 1: </strong></p>
 <ul>
-  <li>熟悉先进的开发工具箱 MMdetection；</li>
-  <li>预处理一个新数据集；</li>
-  <li>分析数据集数据，理解 Data Augmentation 方法的作用，并实践运用；</li>
-  <li>设计检测模型结构，选择合适的 Optimizer；</li>
-  <li>掌握常用 Evaluation Metrics 的计算方式，掌握如何使用工具做论文中的可视化实验</li>
+  <li> If you apply model ensemble, the number of different models are 3. </li>
+  <li> Except CUHK-SYSU, <font color="red">other external dataset is not allowed</font>.</li>
+  <li> You can only submit <font color="red">two times</font> each day.</li>
 </ul>
 
-<h3 id="q0-setup-mmdetection">Setup</h3>
 
-<p><strong>Download.</strong> Starter code containing jupyter notebooks can be downloaded <a href="">here</a>.</p>
-
-<p><strong>Install MMDetection</strong> <a href="https://github.com/open-mmlab/mmdetection">Github Link</a>
-
-<p><strong>Download dataset</strong>. Next, you will need to download the dataset. Run the following from the <code class="language-plaintext highlighter-rouge">assignment2</code> directory:</p>
-
-<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nb">cd </span>datasets
-./get_datasets.sh
-</code></pre></div></div>
-
-<h3 id="q1-customizing-dataset-10-points">Q1: Customizing Dataset (10 points)</h3>
-
-<p>由于采集目的和标注工具的不同，数据集的格式可能不尽相同。如果想快速将自己的代码适配新的数据集，一个正确的思路是</p>
-
+<p><strong> Finaly Report Submission: </strong></p>
 <ul>
-  <li>仔细阅读数据集作者提供的 README 文件；</li>
-  <li>确认一个与当前代码兼容的中间格式，通常成熟的工具箱会为数据集编写单独的 class；</li>
-  <li>编写脚本转换成中间格式；</li>
+  <li>Introduce the <strong>process of converting CUHK-SYSU dataset</strong>.</li>
+  <li>Introduce your <strong> data augmentation </strong>.</li>
+  <li>Introduce your <strong> network architecture and training method </strong>.</li>
+  <li>Introduce other strategies of <strong> performance improvement </strong>.</li>
 </ul>
 
-<p><strong> 编程作业： </strong>在这一步中，请将我们的数据集转化成 MMDetection 兼容的格式。建议参考 <a href="<a href="https://github.com/open-mmlab/mmdetection">官方说明</a></p>
+<h3 id="q0-setup-mmdetection"><strong>2. Getting Started</strong></h3>
 
-<h3 id="q2-data-analysis-and-data-augmentation-20-points">Q2: Data Analysis and Data Augmentation (20 points)</h3>
+<p><strong>Install MMDetection</strong> <a href="https://github.com/open-mmlab/mmdetection">Github Link</a>. We will provide pre-installed environment for you, but it is also suggested to task a try to install MMDetection by yourself.
 
-<p>是否存在长尾问题？遮挡问题？多尺度问题？域可以利用 MMDetection 的数据集可视化工具</p>
+<p><strong>Download datasets</strong>. The datasets are compatible to format of PASCAL VOC 2012. A sample config file is uploaded to Google Drive, too.
 
-<p><strong> 编程作业： </strong>数据是有限的，目前对大多数视觉任务来说，数据增强是必不可少的一环。在 MMDetection 中选择或实现一些数据增强方法。</p>
+<table  border=1>
+	<caption> Dataset Statistics </caption>
+	<tr>
+	  <td>Name</td>
+	  <td>Training</td>
+    <td>Testing</td>
+	</tr>
+	<tr>
+	  <td>Object Detection</td>
+	  <td>3000</td>
+    <td>1500</td>
+	</tr>
+  <tr>
+	  <td>Pedestrian Detection</td>
+	  <td>3000</td>
+    <td>1500</td>
+	</tr>
+	</table>
+  
 
-<p><strong> 书面作业： </strong>解释他们做了什么，对模型有什么益处。</p>
+<h3 id="q1-customizing-dataset-10-points"><strong>3. Add Customized Dataset</strong></h3>
 
-<h3 id="q3-model-designing-and-optimizer-setting-50-points">Q3: Model Designing and Optimizer Setting (50 points)</h3>
+<p>Some competition allow the participators to utilize external data to improve the model's generalization ability and avoid over-fitting. In this competition, we provide another pedestrian detection dataset, CUHK-SYSU, for you to extend your training set. </p>
 
-<p>MMDetection 将模型抽象成了五个组件：</p>
+<p>Please refer to the <a href="https://github.com/open-mmlab/mmdetection/blob/master/docs/2_new_data_model.md">docs</a> in MMDetection and README.txt in the datasets.</p>
+
+<h3 id="q2-data-analysis-and-data-augmentation-20-points"><strong>4. Data Analysis and Data Augmentation</strong></h3>
+
+<p>Is there any problem in data? Possible answers: long-tail problem, occlusion problem, multi-scale problem, etc.</p>
+
+<p> Some data augmentation method can help eliminate these problems. e.g., random erasing (<a href="https://ojs.aaai.org/index.php/AAAI/article/view/7000">paper link</a>) can improve the model's robustness to occlusion data. Please analysis the characteristic of datasets and implement some data augmentations.</p>
+
+<h3 id="q3-model-designing-and-optimizer-setting-50-points"><strong>5. Model Designing and Optimizer Setting</strong></h3>
+
+<p>MMDetection categorizes model components into 5 types:</p>
 
 <ul>
   <li>backbone: usually an FCN network to extract feature maps, e.g., ResNet, MobileNet.</li>
@@ -139,33 +154,22 @@
   <li>loss: the component in head for calculating losses, e.g., FocalLoss, L1Loss, and GHMLoss.</li>
 </ul>
 
-<p><strong> 编程作业： </strong>我们提供一个常规测试集和两个专项测试集，包括小尺寸测试集、夜间场景（few-shot）测试集。并且，我们提供了 Faster R-CNN baseline 在这三个测试集上的性能。在本次作业中，你需要尝试通过改进 a). backbone+neck; b). roi extractor; c). loss functions 来完成：</p>
+<p>In this competition, we provide the results of Faster R-CNN baseline using default config file. You should try to improve at least one of a). backbone+neck; b). roi extractor; c). loss functions to achieve a better performance or shorter inference time than the baseline. Besides, we encourage the attempt at new paradigm for detection, likes OneNet (<a href="https://arxiv.org/abs/2012.05780">paper link</a>) and SparseRCNN (<a href="https://arxiv.org/abs/2011.12450">paper link</a>).</p>
 
+<h3 id="q4-evaluation-metrics-and-visualization-tools-20-points"><strong>6. Model Ensemble</strong></h3>
+
+<p>Model ensemble is an effective technology to improve the final performance on machine learning task. A machine learning ensemble consists of a concrete finite set of alternative models. Usually, the more difference among them, the better final performance they achieve.</p>
+
+<p>Please investigate and implement model ensemble or some other technologies often used in competitions.</p>
+
+
+<h3 id="submitting-your-work"><strong>7. Submitting your work</strong></h3>
+<p>Your final grade depends on two aspects:</p>
 <ul>
-  <li>在常规测试集上实现比 baseline 更好的性能以及更高的效率；</li>
-  <li>尝试解决长尾问题，调研相关工作并在 MMDetection 中实现它们；</li>
-  <li>在小尺寸测试集上实现比 baseline 更好的性能以及更高的效率 (仅使用 FPN 将无法获得全部分数)；</li>
-  <li>在夜间场景测试集上实现比 baseline 更好的性能以及更高的效率</li>
-  <li>(optional) 实现一些检测的新范式，例如 OneNet, SparseRCNN</li>
+  <li><font color='red'>You need to submit the detection results based on our provided testing set. We will evaluate the performance (AP&recall) of your model.</li>
+  <li><font color='red'>You need to submit your final code project and corresponding report.</li>
 </ul>
 
-<p><strong> 书面作业： </strong>结合下一节的检测结果可视化工具，分析每一个问题你是如何解决的：</p>
-<ul>
-  <li>在常规测试集上性能以及效率提升的原因，如果与后面问题重复可以简写；</li>
-  <li>目前学界如何解决长尾问题，你的解决方案是什么；</li>
-  <li>目前学界如何解决小尺寸检测问题，你的解决方案是什么；</li>
-  <li>目前学界如何解决夜间场景 (few-shot 问题)，你的解决方案是什么</li>
-  <li>检测新范式的调研，例如 OneNet, SparseRCNN</li>
-</ul>
-
-<h3 id="q4-evaluation-metrics-and-visualization-tools-20-points">Q4: Evaluation Metrics and Visualization tools (20 points)</h3>
-
-<p><strong> 书面作业： </strong>介绍研究和竞赛中常用的 Metrics 和详细的计算方法</p>
-
-<p><strong> 编程作业： </strong>利用 MMDetection 的工具绘制 loss 曲线、可视化检测结果、计算 Flops 和参数量</p>
-
-<h3 id="submitting-your-work">Submitting your work</h3>
-<p>TBD</p>
   </article>
 
 </div>
