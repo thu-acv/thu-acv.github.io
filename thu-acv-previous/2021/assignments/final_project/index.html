@@ -1,0 +1,173 @@
+<!DOCTYPE html>
+<html>
+
+  <head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <title>Assignment 2</title>
+  <meta name="viewport" content="width=device-width">
+  <meta name="description" content="Course materials and notes for Stanford class CS231n: Convolutional Neural Networks for Visual Recognition.">
+  <link rel="canonical" href="index.html">
+
+  <!-- Custom CSS -->
+  <link rel="stylesheet" href="../../css/main.css">
+  <!-- bootstrap -->
+  <link rel="stylesheet" href="https://lib.baomitu.com/twitter-bootstrap/3.2.0/css/bootstrap.min.css">
+  <link rel="stylesheet" href="https://lib.baomitu.com/twitter-bootstrap/3.2.0/css/bootstrap-theme.min.css">
+  <link rel="stylesheet" type="text/css" href="../../css/style.css" />
+
+  <!-- Google fonts -->
+  <link href='https://fonts.googleapis.com/css?family=Roboto:400,300' rel='stylesheet' type='text/css'>
+
+  <!-- Google tracking -->
+  <script>
+    (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+    (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+    m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+    })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+    ga('create', 'UA-46895817-2', 'auto');
+    ga('send', 'pageview');
+  </script>
+</head>
+
+
+<body>
+
+    <div id="header">
+      <a href="">
+        <img src="../../images/logo_2x.png" title="SenseTime" style="height:70px; position: absolute; left: 20px; top: 20px; ">
+      </a>
+      <!-- <a href="http://cuhk.edu.hk/english/index.html">
+        <img src="images/cu_logo.jpg" style="height:50px; float: right; margin-right: 100px; margin-bottom: 18px;">
+      </a> -->
+    
+      <a href="../../index.html">
+        <h1> 高等计算机视觉 Advanced Computer Vision </h1>
+      </a>
+    
+      <div style="clear:both;"></div>
+    </div>
+
+</header>
+
+
+    <div class="page-content">
+      <div class="wrap">
+      <div class="post">
+
+  <header class="post-header">
+    <h1>Final Project</h1>
+  </header>
+
+  <article class="post-content">
+  <p>This assignment is due on <strong> TBD </strong> at 11:59pm PDT.</p>
+
+<details>
+<summary>Jupyter Starter Code Download Link</summary>
+
+ <ul>
+  <li><a href="assignment2_jupyter.zip">Jupyter starter code</a></li>
+</ul>
+</details>
+
+<ul>
+  <li><a href="#goals">Goals</a></li>
+  <li><a href="#q0-setup-mmdetection">Setup MMDetection</a></li>
+  <li><a href="#q1-customizing-dataset-10-points">Q1: Customizing Dataset (10 points)</a></li>
+  <li><a href="#q2-data-analysis-and-data-augmentation-20-points">Q2: Data Analysis and Data Augmentation (20 points)</a></li>
+  <li><a href="#q3-model-designing-and-optimizer-setting-50-points">Q3: Model Designing and Optimizer Setting (50 points)</a></li>
+  <li><a href="#q4-evaluation-metrics-and-visualization-tools-20-points">Q4: Evaluation Metrics and Visualization tools (20 points)</a></li>
+  <li><a href="#submitting-your-work">Submitting your work</a></li>
+</ul>
+
+<h3 id="goals">Goals</h3>
+
+<p>作业考察设计与训练检测器的完整流程，需要补充样例代码中空缺的部分，记录实验并且完成一些问答题目，包括:</p>
+
+<ul>
+  <li>熟悉先进的开发工具箱 MMdetection；</li>
+  <li>预处理一个新数据集；</li>
+  <li>分析数据集数据，理解 Data Augmentation 方法的作用，并实践运用；</li>
+  <li>设计检测模型结构，选择合适的 Optimizer；</li>
+  <li>掌握常用 Evaluation Metrics 的计算方式，掌握如何使用工具做论文中的可视化实验</li>
+</ul>
+
+<h3 id="q0-setup-mmdetection">Setup</h3>
+
+<p><strong>Download.</strong> Starter code containing jupyter notebooks can be downloaded <a href="">here</a>.</p>
+
+<p><strong>Install MMDetection</strong> <a href="https://github.com/open-mmlab/mmdetection">Github Link</a>
+
+<p><strong>Download dataset</strong>. Next, you will need to download the dataset. Run the following from the <code class="language-plaintext highlighter-rouge">assignment2</code> directory:</p>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nb">cd </span>datasets
+./get_datasets.sh
+</code></pre></div></div>
+
+<h3 id="q1-customizing-dataset-10-points">Q1: Customizing Dataset (10 points)</h3>
+
+<p>由于采集目的和标注工具的不同，数据集的格式可能不尽相同。如果想快速将自己的代码适配新的数据集，一个正确的思路是</p>
+
+<ul>
+  <li>仔细阅读数据集作者提供的 README 文件；</li>
+  <li>确认一个与当前代码兼容的中间格式，通常成熟的工具箱会为数据集编写单独的 class；</li>
+  <li>编写脚本转换成中间格式；</li>
+</ul>
+
+<p><strong> 编程作业： </strong>在这一步中，请将我们的数据集转化成 MMDetection 兼容的格式。建议参考 <a href="<a href="https://github.com/open-mmlab/mmdetection">官方说明</a></p>
+
+<h3 id="q2-data-analysis-and-data-augmentation-20-points">Q2: Data Analysis and Data Augmentation (20 points)</h3>
+
+<p>是否存在长尾问题？遮挡问题？多尺度问题？可以利用 MMDetection 的数据集可视化工具</p>
+
+<p><strong> 编程作业： </strong>数据是有限的，目前对大多数视觉任务来说，数据增强是必不可少的一环。在 MMDetection 中选择或实现一些数据增强方法。</p>
+
+<p><strong> 书面作业： </strong>解释他们做了什么，对模型有什么益处。</p>
+
+<h3 id="q3-model-designing-and-optimizer-setting-50-points">Q3: Model Designing and Optimizer Setting (50 points)</h3>
+
+<p>MMDetection 将模型抽象成了五个组件：</p>
+
+<ul>
+  <li>backbone: usually an FCN network to extract feature maps, e.g., ResNet, MobileNet.</li>
+  <li>neck: the component between backbones and heads, e.g., FPN, PAFPN.</li>
+  <li>head: the component for specific tasks, e.g., bbox prediction and mask prediction.</li>
+  <li>roi extractor: the part for extracting RoI features from feature maps, e.g., RoI Align.</li>
+  <li>loss: the component in head for calculating losses, e.g., FocalLoss, L1Loss, and GHMLoss.</li>
+</ul>
+
+<p><strong> 编程作业： </strong>根据上一步中对数据集的分析，在我们的数据集上尝试通过改进 a). backbone+neck; b). roi extractor; c). loss functions 来解决 hard case，提升性能/效率。利用 MMDetection 的模型可视化工具打印模型。(在整个作业实验中，将 faster R-CNN 作为 baseline) </p>
+
+<p><strong> 书面作业： </strong>结合下一节的检测结果可视化工具，分析和证明你选择的网络如何获得了好的性能/效率。分析 RoI Pooling 的问题</p>
+
+<p><strong> 评价标准： </strong> a). 逻辑清楚的解释模型的提升，并通过可视化或设计对比实验证明；b). 性能或效率明显超过 baseline</p>
+
+<h3 id="q4-evaluation-metrics-and-visualization-tools-20-points">Q4: Evaluation Metrics and Visualization tools (20 points)</h3>
+
+<p><strong> 书面作业： </strong>介绍研究和竞赛中常用的 Metrics 和详细的计算方法</p>
+
+<p><strong> 编程作业： </strong>利用 MMDetection 的工具绘制 loss 曲线、可视化检测结果、计算 Flops 和参数量</p>
+
+<h3 id="submitting-your-work">Submitting your work</h3>
+<p>TBD</p>
+  </article>
+
+</div>
+
+      </div>
+    </div>
+
+
+    <!-- mathjax -->
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    <script type="text/x-mathjax-config">
+      // Make responsive
+      MathJax.Hub.Config({
+       "HTML-CSS": { linebreaks: { automatic: true } },
+       "SVG": { linebreaks: { automatic: true } },
+      });
+    </script>
+
+    </body>
+</html>
