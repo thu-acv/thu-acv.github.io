@@ -1,0 +1,188 @@
+<!DOCTYPE html>
+<html>
+
+  <head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <title>Assignment 1</title>
+  <meta name="viewport" content="width=device-width">
+  <meta name="description" content="Course materials and notes for Stanford class CS231n: Convolutional Neural Networks for Visual Recognition.">
+  <link rel="canonical" href="index.html">
+
+  <!-- Custom CSS -->
+  <link rel="stylesheet" href="../../css/main.css">
+  <!-- bootstrap -->
+  <link rel="stylesheet" href="https://lib.baomitu.com/twitter-bootstrap/3.2.0/css/bootstrap.min.css">
+  <link rel="stylesheet" href="https://lib.baomitu.com/twitter-bootstrap/3.2.0/css/bootstrap-theme.min.css">
+  <link rel="stylesheet" type="text/css" href="../../css/style.css" />
+
+  <!-- Google fonts -->
+  <link href='https://fonts.googleapis.com/css?family=Roboto:400,300' rel='stylesheet' type='text/css'>
+
+  <!-- Google tracking -->
+  <script>
+    (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+    (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+    m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+    })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+    ga('create', 'UA-46895817-2', 'auto');
+    ga('send', 'pageview');
+  </script>
+</head>
+
+
+<body>
+
+    <div id="header">
+      <a href="">
+        <img src="../../images/logo_2x.png" title="SenseTime" style="height:70px; position: absolute; left: 20px; top: 20px; ">
+      </a>
+      <!-- <a href="http://cuhk.edu.hk/english/index.html">
+        <img src="images/cu_logo.jpg" style="height:50px; float: right; margin-right: 100px; margin-bottom: 18px;">
+      </a> -->
+    
+      <a href="../../index.html">
+        <h1> 高等计算机视觉 Advanced Computer Vision </h1>
+      </a>
+    
+      <div style="clear:both;"></div>
+    </div>
+
+</header>
+
+
+    <div class="page-content">
+      <div class="wrap">
+      <div class="post">
+
+  <header class="post-header">
+    <h1>Assignment 1</h1>
+  </header>
+
+  <article class="post-content">
+  <p>This assignment is due on <strong> Apr. 2, 2021 </strong> at 11:59pm UTC+8.</p>
+	<p><strong>Please refer to the <a href="https://drive.google.com/file/d/1Gp7XL8Z5gby77O2foq2fAXuG5EJT2Viv/view?usp=sharing">Training Code</a>,
+	<a href="https://drive.google.com/file/d/1sG-8Z-COCfMe2vNg0R70oeXEHS8-STt-/view?usp=sharing">Training Dataset</a> for model training.<br>
+	<a href="https://drive.google.com/file/d/1G1IA7Hb64pdqvcIpDfMOqeawV2AIHn9B/view?usp=sharing">Test Dataset</a> for submission.<br>
+	<a href="https://drive.google.com/file/d/18-ziZ1dtRQIIgrUxjA3Cph1nav1eaunv/view?usp=sharing">Training label and test image list</a> for training and submission.<br><br>
+	Download the code and data from <a href="https://cloud.tsinghua.edu.cn/d/dc5b6a2d121f44c0864a/">Tsinghua Cloud</a> if you can't open the link above.
+	</p>
+
+<h3 id="goals"><strong>1. Introduction to Face Recognition</strong></h3>
+
+<img src="../../images/pipeline.png" width="850" height="160"/>
+
+<p> The image above shows the standard pipeline of <strong>face recognition.</strong></p>
+<p> There are three sub-modules in full pipeline of the <strong>face recognition</strong>: <strong>face detection</strong>, <strong>face alignment</strong> and <strong>face recognition</strong></p>
+
+<p> In this assignment, we only focus on the face recognition task as shown in the red box </p>
+
+<h3 id="goals"><strong>2. Target of the Assignment</strong></h3>
+
+<p> We will provide a standard sub-dataset and the testset. Moreover, we also provide the demo code for baseline training. </p>
+<p> If you want to achieve high performance, you need to know the following knowledge.</p>
+
+<ul>
+  <li> Learn the standard skills for basic model training.</li>
+  <li> Learn the skills for adjusting the hyperparameters in training. </li>
+  <li> Learn to how to compute the Flops of a standard CNN architecture. We suggest <strong>Thop</strong>.</li>
+  <li> Learn basic data augmentation. </li>
+  <li> Learn the evaluation metric (we provide the evaluation code). </li>
+  <li> Learn the noise-roubust model training methods. We suggest you read [1][2][3].</li>
+</ul>
+<p> [1]: ArcFace: Additive Angular Margin Loss for Deep Face Recognition.<br>
+ [2]: Towards Flops-constrained Face Recognition.<br>
+[3]: Sub-center ArcFace: Boosting Face Recognition by Large-scale Noisy Web Faces. </p>
+
+
+
+<p><strong> Requirements of Assignment 1: </strong></p>
+<ul>
+  <li> Flops of the submitted for processing single image should be <font color="red">less than 1G. (Madd < 500M)</font>.</li>
+  <li> <font color="red">External dataset is not allowed</font>.</li>
+  <li> You can only submit <font color="red">two times</font> each day.</li>
+</ul>
+
+<p><strong> Finaly Report Submission: </strong></p>
+<ul>
+  <li>Introduce your <strong>data processing</strong>.</li>
+  <li>Introduce your <strong>network architecture</strong> and the corresponding Flops.</li>
+  <li>Introduce your <strong>training method</strong>.</li>
+  <li>Introduce your <strong>performance improvement</strong>.</li>
+  <li>Introduce your <strong>understanding about this whole training stage</strong>.</li>
+</ul>
+
+<h3 id="q0-description"><strong>3. Description of the Training Dataset</strong></h3>
+
+<p> We provide a standard sub-dataset for this assignment and the corresponding testset. <br>
+You need to train your model on the training dataset and submit the feature representation of the testset.</p>
+<p> <font color="red"><strong> Note that the order of the features in the submitted file should be the same as the given image order</strong></font>.</p>
+<p><strong> Introduction to training dataset.</strong></p>
+<ul>
+  <li>The number of images is 55K; </li>
+  <li>The number of identities is 1K; </li>
+  <li>The training data contains about 20% label noise; </li>
+</ul>
+
+<p> Introduction to testset.</p>
+<ul>
+  <li>The number of images is 52,000；</li>
+</ul>
+
+
+	<p><strong>Please refer to the <a href="https://drive.google.com/file/d/1Gp7XL8Z5gby77O2foq2fAXuG5EJT2Viv/view?usp=sharing">Training Code</a>,
+	<a href="https://drive.google.com/file/d/1sG-8Z-COCfMe2vNg0R70oeXEHS8-STt-/view?usp=sharing">Training Dataset</a> for model training.<br>
+	<a href="https://drive.google.com/file/d/1G1IA7Hb64pdqvcIpDfMOqeawV2AIHn9B/view?usp=sharing">Test Dataset</a> for submission.<br>
+	<a href="https://drive.google.com/file/d/18-ziZ1dtRQIIgrUxjA3Cph1nav1eaunv/view?usp=sharing">Training label and test image list</a> for training and submission.
+	</p>
+
+<h3 id="q0-evaluation"><strong>4. Evalution Metric</strong></h3>
+
+<p> Submissions are evaluated by computing <font color="red">TPR (true positive rate)@FPR=1e-1 (false positive rate)</font>. The metric is described as follows: </p>
+<p> <strong>TPR</strong> = TP(true positives) / (TP(true positives) + FN(false negatives)) </p>
+<p> <strong>FPR</strong> = FP(false positives) / (FP(false positives) + TN(true negatives)) </p>
+<p> We also provide the evaluation code and you can obtain the detailed information from it. </p>
+
+<h3 id="q0-setup"><strong>5. Start</strong></h3>
+
+<p> <font color="red">Please refer to the README in demo code for start. </font></p>
+
+<h3 id="q0-setup"><strong>6. Advice</strong></h3>
+
+<ul>
+  <li>Data augmentation is important when the training samples is insufficient. You can try to adopt different types of data augmentation
+to improve your generalized ability of your model. </li>
+  <li>The choice of the training hyperparameters is important. You can try to adopt different types of learning rate decay such as Cosine Manner;
+  And also, you can try to adjust the weight_decay and other optimizors.</li>
+  <li>The architecture is important for roubust representa learning. We provide the popular <strong>RegNet</strong> and you can try to modify it or deisgn more powerful architecture.</li>
+  <li>Loss function is important for face recognition, especially with noisy data. You can try to use some noise-roubust loss function, such as ArcNegFace in [2] or Sub-center ArcFace in [3].</li>
+</ul>
+
+<h3 id="submitting-your-work"><strong>7. Submit Your Project and Final Report</strong></h3>
+<p>Your final grade depends on two aspects:</p>
+<ul>
+  <li><font color='red'>You need to submit the feature extracted by you model based on our provided test list. We will evaluate the performance of your model. [two times each day]<font>[The detailed submission method and test result feedback will be provided on March 22]</li>
+  <li><font color='red'>You need to submit your final code project and corresponding report. [we will check the Flops of your model]<font> [This is due on Apr. 2, 2021 at 11:59pm UTC+8.]</li>
+</ul>
+
+  </article>
+
+</div>
+
+      </div>
+    </div>
+
+
+    <!-- mathjax -->
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    <script type="text/x-mathjax-config">
+      // Make responsive
+      MathJax.Hub.Config({
+       "HTML-CSS": { linebreaks: { automatic: true } },
+       "SVG": { linebreaks: { automatic: true } },
+      });
+    </script>
+
+    </body>
+</html>
