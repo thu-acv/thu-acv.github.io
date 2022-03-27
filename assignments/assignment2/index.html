@@ -60,10 +60,22 @@
     <h1>Assignment 2</h1>
   </header>
 
-  <img src="../../images/coco.png"/>
+  <div class="figcenter">
+    <span>
+      <img src="../../images/od1.gif" width="250"/>
+    </span>
+    <span>
+      <img src="../../images/od2.gif" width="250"/>
+    </span>
+    <span>
+      <img src="../../images/od3.gif" width="250"/>
+    </span>
+  </div>
+  
+  <!-- <img src="../../images/od.gif" width="250"/> -->
 
   <article class="post-content">
-    <p>This assignment is due on <strong> May. 7, 2021 </strong> at 11:59pm UTC+8.</p>
+    <p>This assignment is due on <strong> April. 29, 2022 </strong> at 11:59pm UTC+8.</p>
     <p><strong>Please download training set (images&label) and testing set (only images) from <td><haha>Google Drive</haha></td> </strong><br><br>
       <!-- <a href="">Google Drive</a> -->
     Download the data from <td><haha><a href="https://cloud.tsinghua.edu.cn/d/ea700adbc5504b25aea4/">Tsinghua Cloud</a></haha></td> if you can't open the link above.
@@ -79,30 +91,27 @@
   <li><a href="#submitting-your-work">Submitting your work</a></li>
 </ul>
 
-<h3 id="goals"><strong>1. Introduction to the competition</strong></h3>
+<h3 id="goals"><strong>1. Introduction to the assignment</strong></h3>
 
-<p>This mini competition consists of two tasks, <strong>object detection</strong> and <strong>pedestrian detection</strong>. You should train two models to solve them respectively.</p>
+<p>In this assignment, you are expected to handle an <strong>object detection</strong> task. The goal of this task is to recognize objects from a number of visual object classes in <strong> street scenes </strong>. The detection of foreground objects is among the most critical requirements to facilitate self-driving applications. <strong>6</strong> of the most common object classes have been selected, which are: 1). car; 2). person; 3). Van; 4). Cyclist; 5). Tram; 6). Truck.</p>
 
-<p>The goal of the object detection task is to recognize objects from a number of visual object classes in <strong> street scenes </strong>. The detection of foreground objects is among the most critical requirements to facilitate self-driving applications. 6 of the most common object classes have been selected are: 1). car; 2). person; 3). Van; 4). Cyclist; 5). Tram; 6). Truck.</p>
+<!-- <p>The goal of the pedestrian detection task is to design a detection model robust to crowd scenes. In crowd scenarios, different people occlude with each other with high overlaps and cause great difficulty of crowd occlusion. </p> -->
 
-<p>The goal of the pedestrian detection task is to design a detection model robust to crowd scenes. In crowd scenarios, different people occlude with each other with high overlaps and cause great difficulty of crowd occlusion. </p>
-
-
-<p><strong> Requirements of Assignment 1: </strong></p>
+<p><strong> Requirements: </strong></p>
 <ul>
   <li> If you apply model ensemble, the number of different models are 3. </li>
-  <li> Except CUHK-SYSU, <font color="red">other external dataset is not allowed</font>.</li>
-  <li> You can only submit <font color="red">two times</font> each day.</li>
+  <li> Except the external data we provided, <font color="red">other external dataset is not allowed</font>.</li>
 </ul>
 
 
 <p><strong> Finaly Report Submission: </strong></p>
 <ul>
-  <li>Introduce the <strong>process of converting CUHK-SYSU dataset</strong>.</li>
+  <!-- <li>Introduce the <strong>process of converting CUHK-SYSU dataset</strong>.</li> -->
   <li>Introduce your <strong> data augmentation </strong>.</li>
   <li>Introduce your <strong> network architecture and training method </strong>.</li>
   <li>Introduce other strategies of <strong> performance improvement </strong>.</li>
 </ul>
+The detail of report can be referred from <td><haha><a href="">template</a></haha></td>
 
 <h3 id="q0-setup-mmdetection"><strong>2. Getting Started</strong></h3>
 
@@ -117,24 +126,21 @@
 	<tr>
 	  <td>Name</td>
 	  <td>Training</td>
+    <td>Validation</td>
     <td>Testing</td>
 	</tr>
 	<tr>
 	  <td>Object Detection</td>
-	  <td>3000</td>
-    <td>1500</td>
-	</tr>
-  <tr>
-	  <td>Pedestrian Detection</td>
-	  <td>3000</td>
-    <td>1500</td>
+	  <td>2700</td>
+    <td>500</td>
+    <td>500</td>
 	</tr>
 	</table>
   
 
 <h3 id="q1-customizing-dataset-10-points"><strong>3. Add Customized Dataset</strong></h3>
 
-<p>Some competition allow the participators to utilize external data to improve the model's generalization ability and avoid over-fitting. In this competition, we provide another pedestrian detection dataset, CUHK-SYSU, for you to extend your training set. </p>
+<p>Some competition allow the participators to utilize external data to improve the model's generalization ability and avoid over-fitting. In this competition, we provide another object detection dataset for you to extend your training set. </p>
 
 <p>Please refer to the <a href="https://github.com/open-mmlab/mmdetection/blob/master/docs/2_new_data_model.md">docs</a> in MMDetection and README.txt in the datasets.</p>
 
