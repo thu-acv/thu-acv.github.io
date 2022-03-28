@@ -76,11 +76,11 @@
 
   <article class="post-content">
     <p>This assignment is due on <strong> April. 29, 2022 </strong> at 11:59pm UTC+8.</p>
-    <p><strong>Please download training set (images&label) and testing set (only images) from <td><haha>Google Drive</haha></td> </strong><br><br>
+    <p><strong>Please download all materials from <td><haha><a href="">Google Drive</a></haha></td> or <td><haha><a href="">Tsinghua Cloud</a></haha></td> </strong>
       <!-- <a href="">Google Drive</a> -->
-    Download the data from <td><haha><a href="https://cloud.tsinghua.edu.cn/d/ea700adbc5504b25aea4/">Tsinghua Cloud</a></haha></td> if you can't open the link above.
+    <!-- Download the data from <td><haha><a href="https://cloud.tsinghua.edu.cn/d/ea700adbc5504b25aea4/">Tsinghua Cloud</a></haha></td> if you can't open the link above. -->
     </p>
-
+    <p>The provided materials contain standard dataset, external dataset, a template config file, a template results.pkl and a simple README.md. Following is the overall structure of your assignment.</p>
 <ul>
   <li><a href="#goals">Introduction to the competition</a></li>
   <li><a href="#q0-setup-mmdetection">Getting Started</a></li>
@@ -93,25 +93,9 @@
 
 <h3 id="goals"><strong>1. Introduction to the assignment</strong></h3>
 
-<p>In this assignment, you are expected to handle an <strong>object detection</strong> task. The goal of this task is to recognize objects from a number of visual object classes in <strong> street scenes </strong>. The detection of foreground objects is among the most critical requirements to facilitate self-driving applications. <strong>6</strong> of the most common object classes have been selected, which are: 1). car; 2). person; 3). Van; 4). Cyclist; 5). Tram; 6). Truck.</p>
+<p>In this assignment, you are expected to handle an <strong>object detection</strong> task. The goal of this task is to recognize objects from a number of visual object classes in <strong>street scenes</strong>. The detection of foreground objects is among the most critical requirements to facilitate self-driving applications. <strong>6</strong> of the most common object classes have been selected, which are: 1). car; 2). person; 3). Van; 4). Cyclist; 5). Tram; 6). Truck. Note that there's an auxiliary category, DontCare, in the provided annotation, and this is <strong>NOT</strong> considered in final evaluation.</p>
 
 <!-- <p>The goal of the pedestrian detection task is to design a detection model robust to crowd scenes. In crowd scenarios, different people occlude with each other with high overlaps and cause great difficulty of crowd occlusion. </p> -->
-
-<p><strong> Requirements: </strong></p>
-<ul>
-  <li> If you apply model ensemble, the number of different models are 3. </li>
-  <li> Except the external data we provided, <font color="red">other external dataset is not allowed</font>.</li>
-</ul>
-
-
-<p><strong> Finaly Report Submission: </strong></p>
-<ul>
-  <!-- <li>Introduce the <strong>process of converting CUHK-SYSU dataset</strong>.</li> -->
-  <li>Introduce your <strong> data augmentation </strong>.</li>
-  <li>Introduce your <strong> network architecture and training method </strong>.</li>
-  <li>Introduce other strategies of <strong> performance improvement </strong>.</li>
-</ul>
-The detail of report can be referred from <td><haha><a href="">template</a></haha></td>
 
 <h3 id="q0-setup-mmdetection"><strong>2. Getting Started</strong></h3>
 
@@ -119,28 +103,28 @@ The detail of report can be referred from <td><haha><a href="">template</a></hah
   
 <!-- We will provide pre-installed environment for you, but it is also suggested to task a try to install MMDetection by yourself. -->
 
-<p><strong>Download datasets</strong>. The datasets are compatible to format of PASCAL VOC 2012. A sample config file is uploaded to Google Drive, too.
+<p><strong>Download datasets</strong>. The datasets are <strong>almost</strong> compatible to format of PASCAL VOC 2012. A sample config file is uploaded to Google Drive, too. <strong>You need to figure out how to modify the config file and some corresponding classes in the MMDetection framework to get it work</strong>.
 
 <table  border=1>
 	<caption> Dataset Statistics </caption>
 	<tr>
-	  <td>Name</td>
-	  <td>Training</td>
-    <td>Validation</td>
-    <td>Testing</td>
+	  <td> Name </td>
+	  <td> Training </td>
+    <td> Validation </td>
+    <td> Testing </td>
 	</tr>
 	<tr>
-	  <td>Object Detection</td>
-	  <td>2700</td>
-    <td>500</td>
-    <td>500</td>
+	  <td> Object Detection </td>
+	  <td> 2700 </td>
+    <td >500 </td>
+    <td> 512 </td>
 	</tr>
 	</table>
   
 
 <h3 id="q1-customizing-dataset-10-points"><strong>3. Add Customized Dataset</strong></h3>
 
-<p>Some competition allow the participators to utilize external data to improve the model's generalization ability and avoid over-fitting. In this competition, we provide another object detection dataset for you to extend your training set. </p>
+<p>Some competition allow the participators to utilize external data to improve the model's generalization ability and avoid over-fitting. In this competition, we provide another object detection dataset for you to extend your training set. Note that the provided external dataset is in kitti format. </p>
 
 <p>Please refer to the <a href="https://github.com/open-mmlab/mmdetection/blob/master/docs/2_new_data_model.md">docs</a> in MMDetection and README.txt in the datasets.</p>
 
@@ -174,8 +158,24 @@ The detail of report can be referred from <td><haha><a href="">template</a></hah
 <h3 id="submitting-your-work"><strong>7. Submitting your work</strong></h3>
 <p>Your final grade depends on two aspects:</p>
 <ul>
-  <li><font color='red'>You need to submit the detection results based on our provided testing set. We will evaluate the performance (AP&recall) of your model.</li>
-  <li><font color='red'>You need to submit your final code project and corresponding report.</li>
+  <li><font color='red'>You need to submit the detection results based on our provided testing set. We will evaluate the performance (AP&recall) of your model.</font> Details of how to generate such a results.pkl can be referred from the README.md in materials.</li>
+  <li><font color='red'>You need to submit your final code project and corresponding report.</font> The detail of report can be referred from <td><haha><a href="">template</a></haha></td>
+  </li>
+</ul>
+
+<p><strong> Requirements: </strong></p>
+<ul>
+  <li> If you apply model ensemble, the number of different models are 3. </li>
+  <li> Except the external data we provided, <font color="red">other external dataset is not allowed</font>.</li>
+</ul>
+
+
+<p><strong> Finaly Report Submission: </strong></p>
+<ul>
+  <!-- <li>Introduce the <strong>process of converting CUHK-SYSU dataset</strong>.</li> -->
+  <li>Introduce your <strong> data augmentation </strong>.</li>
+  <li>Introduce your <strong> network architecture and training method </strong>.</li>
+  <li>Introduce other strategies of <strong> performance improvement </strong>.</li>
 </ul>
 
   </article>
