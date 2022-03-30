@@ -1,12 +1,13 @@
 <!DOCTYPE html>
 <html>
 
-  <head>
+<head>
   <meta charset="utf-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <title>Assignment 2</title>
   <meta name="viewport" content="width=device-width">
-  <meta name="description" content="Course materials and notes for Stanford class CS231n: Convolutional Neural Networks for Visual Recognition.">
+  <meta name="description"
+    content="Course materials and notes for Stanford class CS231n: Convolutional Neural Networks for Visual Recognition.">
   <link rel="canonical" href="index.html">
 
   <!-- Custom CSS -->
@@ -21,10 +22,12 @@
 
   <!-- Google tracking -->
   <script>
-    (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
-    (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
-    m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
-    })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+    (function (i, s, o, g, r, a, m) {
+      i['GoogleAnalyticsObject'] = r; i[r] = i[r] || function () {
+        (i[r].q = i[r].q || []).push(arguments)
+      }, i[r].l = 1 * new Date(); a = s.createElement(o),
+        m = s.getElementsByTagName(o)[0]; a.async = 1; a.src = g; m.parentNode.insertBefore(a, m)
+    })(window, document, 'script', '//www.google-analytics.com/analytics.js', 'ga');
 
     ga('create', 'UA-46895817-2', 'auto');
     ga('send', 'pageview');
@@ -34,161 +37,215 @@
 
 <body>
 
-    <div id="header">
-      <a href="">
-        <img src="../../images/logo_2x.png" title="SenseTime" style="height:70px; position: absolute; left: 20px; top: 20px; ">
-      </a>
-      <!-- <a href="http://cuhk.edu.hk/english/index.html">
+  <div id="header">
+    <a href="">
+      <img src="../../images/logo_2x.png" title="SenseTime"
+        style="height:70px; position: absolute; left: 20px; top: 20px; ">
+    </a>
+    <!-- <a href="http://cuhk.edu.hk/english/index.html">
         <img src="images/cu_logo.jpg" style="height:50px; float: right; margin-right: 100px; margin-bottom: 18px;">
       </a> -->
-    
-      <a href="../../index.html">
-        <h1> 高等计算机视觉 Advanced Computer Vision </h1>
-      </a>
-    
-      <div style="clear:both;"></div>
-    </div>
 
-</header>
+    <a href="../../index.html">
+      <h1> 高等计算机视觉 Advanced Computer Vision </h1>
+    </a>
 
+    <div style="clear:both;"></div>
+  </div>
 
-    <div class="page-content">
-      <div class="wrap">
-      <div class="post">
-
-  <header class="post-header">
-    <h1>Assignment 2</h1>
   </header>
 
-  <div class="figcenter">
-    <span>
-      <img src="../../images/od1.gif" width="250"/>
-    </span>
-    <span>
-      <img src="../../images/od2.gif" width="250"/>
-    </span>
-    <span>
-      <img src="../../images/od3.gif" width="250"/>
-    </span>
-  </div>
-  
-  <!-- <img src="../../images/od.gif" width="250"/> -->
 
-  <article class="post-content">
-    <p>This assignment is due on <strong> April. 29, 2022 </strong> at 11:59pm UTC+8.</p>
-    <p><strong>Please download all materials from <td><haha><a href="">Google Drive</a></haha></td> or <td><haha><a href="">Tsinghua Cloud</a></haha></td> </strong>
-      <!-- <a href="">Google Drive</a> -->
-    <!-- Download the data from <td><haha><a href="https://cloud.tsinghua.edu.cn/d/ea700adbc5504b25aea4/">Tsinghua Cloud</a></haha></td> if you can't open the link above. -->
-    </p>
-    <p>The provided materials contain standard dataset, external dataset, a template config file, a template results.pkl and a simple README.md. Following is the overall structure of your assignment.</p>
-<ul>
-  <li><a href="#goals">Introduction to the competition</a></li>
-  <li><a href="#q0-setup-mmdetection">Getting Started</a></li>
-  <li><a href="#q1-customizing-dataset-10-points">Add Customized Dataset</a></li>
-  <li><a href="#q2-data-analysis-and-data-augmentation-20-points">Data Analysis and Data Augmentation</a></li>
-  <li><a href="#q3-model-designing-and-optimizer-setting-50-points">Model Designing and Optimizer Setting</a></li>
-  <li><a href="#q4-evaluation-metrics-and-visualization-tools-20-points">Model Ensemble</a></li>
-  <li><a href="#submitting-your-work">Submitting your work</a></li>
-</ul>
+  <div class="page-content">
+    <div class="wrap">
+      <div class="post">
 
-<h3 id="goals"><strong>1. Introduction to the assignment</strong></h3>
+        <header class="post-header">
+          <h1>Assignment 2</h1>
+        </header>
 
-<p>In this assignment, you are expected to handle an <strong>object detection</strong> task. The goal of this task is to recognize objects from a number of visual object classes in <strong>street scenes</strong>. The detection of foreground objects is among the most critical requirements to facilitate self-driving applications. <strong>6</strong> of the most common object classes have been selected, which are: 1). car; 2). person; 3). Van; 4). Cyclist; 5). Tram; 6). Truck. Note that there's an auxiliary category, DontCare, in the provided annotation, and this is <strong>NOT</strong> considered in final evaluation.</p>
+        <div class="figcenter">
+          <span>
+            <img src="../../images/od1.gif" width="250" />
+          </span>
+          <span>
+            <img src="../../images/od2.gif" width="250" />
+          </span>
+          <span>
+            <img src="../../images/od3.gif" width="250" />
+          </span>
+        </div>
 
-<!-- <p>The goal of the pedestrian detection task is to design a detection model robust to crowd scenes. In crowd scenarios, different people occlude with each other with high overlaps and cause great difficulty of crowd occlusion. </p> -->
+        <!-- <img src="../../images/od.gif" width="250"/> -->
 
-<h3 id="q0-setup-mmdetection"><strong>2. Getting Started</strong></h3>
+        <article class="post-content">
+          <p>This assignment is due on <strong> April. 29, 2022 </strong> at 11:59pm UTC+8.</p>
+          <p><strong>Please download all materials from <td>
+                <haha><a
+                    href="https://drive.google.com/file/d/1iYWeXDwLMIf3JE0b03f-vB6szQ4jYjds/view?usp=sharing">Google
+                    Drive</a></haha>
+              </td> or (<td>
+                <haha><a href="https://cloud.tsinghua.edu.cn/f/cf05d78f0972438a8ee4/?dl=1">Tsinghua Cloud 1</a></haha>
+              </td> 
+              and 
+              <td>
+                <haha><a href="https://cloud.tsinghua.edu.cn/f/9506fe8eff004c4c9be9/?dl=1">Tsinghua Cloud 2</a></haha>
+              </td>) </strong>
+            <!-- <a href="">Google Drive</a> -->
+            <!-- Download the data from <td><haha><a href="https://cloud.tsinghua.edu.cn/d/ea700adbc5504b25aea4/">Tsinghua Cloud</a></haha></td> if you can't open the link above. -->
+          </p>
+          <p>
+            Note that if you download from Tsinghua Cloud, you need to download all the files from two link and run a command <code>cat materials.tar.gz.part_a* > materials.tar.gz</code> to get the complete file.
+          </p>
+          <p>The provided materials contain standard dataset, external dataset, a template config file, a template
+            results.pkl and a simple README.md. Following is the overall structure of your assignment.</p>
+          <ul>
+            <li><a href="#goals">Introduction to the competition</a></li>
+            <li><a href="#q0-setup-mmdetection">Getting Started</a></li>
+            <li><a href="#q1-customizing-dataset-10-points">Add Customized Dataset</a></li>
+            <li><a href="#q2-data-analysis-and-data-augmentation-20-points">Data Analysis and Data Augmentation</a></li>
+            <li><a href="#q3-model-designing-and-optimizer-setting-50-points">Model Designing and Optimizer Setting</a>
+            </li>
+            <li><a href="#q4-evaluation-metrics-and-visualization-tools-20-points">Model Ensemble</a></li>
+            <li><a href="#submitting-your-work">Submitting your work</a></li>
+          </ul>
 
-<p><strong>Install MMDetection</strong> <a href="https://github.com/open-mmlab/mmdetection">Github Link</a>. 
-  
-<!-- We will provide pre-installed environment for you, but it is also suggested to task a try to install MMDetection by yourself. -->
+          <h3 id="goals"><strong>1. Introduction to the assignment</strong></h3>
 
-<p><strong>Download datasets</strong>. The datasets are <strong>almost</strong> compatible to format of PASCAL VOC 2012. A sample config file is uploaded to Google Drive, too. <strong>You need to figure out how to modify the config file and some corresponding classes in the MMDetection framework to get it work</strong>.
+          <p>In this assignment, you are expected to handle an <strong>object detection</strong> task. The goal of this
+            task is to recognize objects from a number of visual object classes in <strong>street scenes</strong>. The
+            detection of foreground objects is among the most critical requirements to facilitate self-driving
+            applications. <strong>6</strong> of the most common object classes have been selected, which are: 1). car;
+            2). person; 3). Van; 4). Cyclist; 5). Tram; 6). Truck. Note that there's an auxiliary category, DontCare, in
+            the provided annotation, and this is <strong>NOT</strong> considered in final evaluation.</p>
 
-<table  border=1>
-	<caption> Dataset Statistics </caption>
-	<tr>
-	  <td> Name </td>
-	  <td> Training </td>
-    <td> Validation </td>
-    <td> Testing </td>
-	</tr>
-	<tr>
-	  <td> Object Detection </td>
-	  <td> 2700 </td>
-    <td >500 </td>
-    <td> 512 </td>
-	</tr>
-	</table>
-  
+          <!-- <p>The goal of the pedestrian detection task is to design a detection model robust to crowd scenes. In crowd scenarios, different people occlude with each other with high overlaps and cause great difficulty of crowd occlusion. </p> -->
 
-<h3 id="q1-customizing-dataset-10-points"><strong>3. Add Customized Dataset</strong></h3>
+          <h3 id="q0-setup-mmdetection"><strong>2. Getting Started</strong></h3>
 
-<p>Some competition allow the participators to utilize external data to improve the model's generalization ability and avoid over-fitting. In this competition, we provide another object detection dataset for you to extend your training set. Note that the provided external dataset is in kitti format. </p>
+          <p><strong>Install MMDetection</strong> <a href="https://github.com/open-mmlab/mmdetection">Github Link</a>.
 
-<p>Please refer to the <a href="https://github.com/open-mmlab/mmdetection/blob/master/docs/2_new_data_model.md">docs</a> in MMDetection and README.txt in the datasets.</p>
+            <!-- We will provide pre-installed environment for you, but it is also suggested to task a try to install MMDetection by yourself. -->
 
-<h3 id="q2-data-analysis-and-data-augmentation-20-points"><strong>4. Data Analysis and Data Augmentation</strong></h3>
+          <p><strong>Download datasets</strong>. The datasets are <strong>almost</strong> compatible to format of PASCAL
+            VOC 2012. A sample config file is uploaded to Google Drive, too. <strong>You need to figure out how to
+              modify the config file and some corresponding classes in the MMDetection framework to get it
+              work</strong>.
 
-<p>Is there any problem in data? Possible answers: long-tail problem, occlusion problem, multi-scale problem, etc.</p>
-
-<p> Some data augmentation method can help eliminate these problems. e.g., random erasing (<a href="https://ojs.aaai.org/index.php/AAAI/article/view/7000">paper link</a>) can improve the model's robustness to occlusion data. Please analysis the characteristic of datasets and implement some data augmentations.</p>
-
-<h3 id="q3-model-designing-and-optimizer-setting-50-points"><strong>5. Model Designing and Optimizer Setting</strong></h3>
-
-<p>MMDetection categorizes model components into 5 types:</p>
-
-<ul>
-  <li>backbone: usually an FCN network to extract feature maps, e.g., ResNet, MobileNet.</li>
-  <li>neck: the component between backbones and heads, e.g., FPN, PAFPN.</li>
-  <li>head: the component for specific tasks, e.g., bbox prediction and mask prediction.</li>
-  <li>roi extractor: the part for extracting RoI features from feature maps, e.g., RoI Align.</li>
-  <li>loss: the component in head for calculating losses, e.g., FocalLoss, L1Loss, and GHMLoss.</li>
-</ul>
-
-<p>In this competition, we provide the results of Faster R-CNN baseline using default config file. You should try to improve at least one of a). backbone+neck; b). roi extractor; c). loss functions to achieve a better performance or shorter inference time than the baseline. Besides, we encourage the attempt at new paradigm for detection, likes OneNet (<a href="https://arxiv.org/abs/2012.05780">paper link</a>) and SparseRCNN (<a href="https://arxiv.org/abs/2011.12450">paper link</a>).</p>
-
-<h3 id="q4-evaluation-metrics-and-visualization-tools-20-points"><strong>6. Model Ensemble</strong></h3>
-
-<p>Model ensemble is an effective technology to improve the final performance on machine learning task. A machine learning ensemble consists of a concrete finite set of alternative models. Usually, the more difference among them, the better final performance they achieve.</p>
-
-<p>Please investigate and implement model ensemble or some other technologies often used in competitions.</p>
-
-
-<h3 id="submitting-your-work"><strong>7. Submitting your work</strong></h3>
-<p>Your final grade depends on two aspects:</p>
-<ul>
-  <li><font color='red'>You need to submit the detection results based on our provided testing set. We will evaluate the performance (AP&recall) of your model.</font> Details of how to generate such a results.pkl can be referred from the README.md in materials.</li>
-  <li><font color='red'>You need to submit your final code project and corresponding report.</font> The detail of report can be referred from <td><haha><a href="">template</a></haha></td>
-  </li>
-</ul>
-
-<p><strong> Requirements: </strong></p>
-<ul>
-  <li> If you apply model ensemble, the number of different models are 3. </li>
-  <li> Except the external data we provided, <font color="red">other external dataset is not allowed</font>.</li>
-</ul>
+          <table border=1>
+            <caption> Dataset Statistics </caption>
+            <tr>
+              <td> Name </td>
+              <td> Training </td>
+              <td> Validation </td>
+              <td> Testing </td>
+            </tr>
+            <tr>
+              <td> Object Detection </td>
+              <td> 2700 </td>
+              <td>500 </td>
+              <td> 512 </td>
+            </tr>
+          </table>
 
 
-<p><strong> Finaly Report Submission: </strong></p>
-<ul>
-  <!-- <li>Introduce the <strong>process of converting CUHK-SYSU dataset</strong>.</li> -->
-  <li>Introduce your <strong> data augmentation </strong>.</li>
-  <li>Introduce your <strong> network architecture and training method </strong>.</li>
-  <li>Introduce other strategies of <strong> performance improvement </strong>.</li>
-</ul>
+          <h3 id="q1-customizing-dataset-10-points"><strong>3. Add Customized Dataset</strong></h3>
 
-  </article>
+          <p>Some competition allow the participators to utilize external data to improve the model's generalization
+            ability and avoid over-fitting. In this competition, we provide another object detection dataset for you to
+            extend your training set. Note that the provided external dataset is in kitti format. </p>
 
-</div>
+          <p>Please refer to the <a
+              href="https://github.com/open-mmlab/mmdetection/blob/master/docs/en/2_new_data_model.md">docs</a> in
+            MMDetection and README.txt in the datasets.</p>
+
+          <h3 id="q2-data-analysis-and-data-augmentation-20-points"><strong>4. Data Analysis and Data
+              Augmentation</strong></h3>
+
+          <p>Is there any problem in data? Possible answers: long-tail problem, occlusion problem, multi-scale problem,
+            etc.</p>
+
+          <p> Some data augmentation method can help eliminate these problems. e.g., random erasing (<a
+              href="https://ojs.aaai.org/index.php/AAAI/article/view/7000">paper link</a>) can improve the model's
+            robustness to occlusion data. Please analysis the characteristic of datasets and implement some data
+            augmentations.</p>
+
+          <h3 id="q3-model-designing-and-optimizer-setting-50-points"><strong>5. Model Designing and Optimizer
+              Setting</strong></h3>
+
+          <p>MMDetection categorizes model components into 5 types:</p>
+
+          <ul>
+            <li>backbone: usually an FCN network to extract feature maps, e.g., ResNet, MobileNet.</li>
+            <li>neck: the component between backbones and heads, e.g., FPN, PAFPN.</li>
+            <li>head: the component for specific tasks, e.g., bbox prediction and mask prediction.</li>
+            <li>roi extractor: the part for extracting RoI features from feature maps, e.g., RoI Align.</li>
+            <li>loss: the component in head for calculating losses, e.g., FocalLoss, L1Loss, and GHMLoss.</li>
+          </ul>
+
+          <p>In this competition, we provide the results of Faster R-CNN baseline using default config file. You should
+            try to improve at least one of a). backbone+neck; b). roi extractor; c). loss functions to achieve a better
+            performance or shorter inference time than the baseline. Besides, we encourage the attempt at new paradigm
+            for detection, likes OneNet (<a href="https://arxiv.org/abs/2012.05780">paper link</a>) and SparseRCNN (<a
+              href="https://arxiv.org/abs/2011.12450">paper link</a>).</p>
+
+          <h3 id="q4-evaluation-metrics-and-visualization-tools-20-points"><strong>6. Model Ensemble</strong></h3>
+
+          <p>Model ensemble is an effective technology to improve the final performance on machine learning task. A
+            machine learning ensemble consists of a concrete finite set of alternative models. Usually, the more
+            difference among them, the better final performance they achieve.</p>
+
+          <p>Please investigate and implement model ensemble or some other technologies often used in competitions.</p>
+
+
+          <h3 id="submitting-your-work"><strong>7. Submitting your work</strong></h3>
+          <p>Your final grade depends on two aspects:</p>
+          <ul>
+            <li>
+              <font color='red'>You need to submit the detection results based on our provided testing set. We will
+                evaluate the performance (AP&recall) of your model.</font> Details of how to generate such a results.pkl
+              can be referred from the README.md in materials.
+            </li>
+            <li>
+              <font color='red'>You need to submit your final code project and corresponding report.</font> The detail
+              of report can be referred from <td>
+                <haha><a href="./Advanced Computer Vision Assignment Report 2022.zip">template</a></haha>. You can also download from <td>
+                  <haha><a
+                      href="https://drive.google.com/file/d/1qqr3Kw0XqTMWhr6nLvyyFqPt0FZEsEiZ/view?usp=sharing">Google
+                      Drive</a></haha>
+                </td>.
+              </td>
+            </li>
+          </ul>
+
+          <p><strong> Requirements: </strong></p>
+          <ul>
+            <li> Please follow strictly the README when you generate results.pkl and write the report,<font color="red">ask TA if you have any concern</font>. </li>
+            <li> If you apply model ensemble, the number of different models are <font color="red">3</font>. </li>
+            <li> Except the external data we provided, <font color="red">other external dataset is not allowed</font>.
+            </li>
+          </ul>
+
+
+          <!-- <p><strong> Finaly Report Submission: </strong></p>
+          <ul>
+            <li>Introduce your <strong> data augmentation </strong>.</li>
+            <li>Introduce your <strong> network architecture and training method </strong>.</li>
+            <li>Introduce other strategies of <strong> performance improvement </strong>.</li>
+          </ul> -->
+
+        </article>
 
       </div>
+
     </div>
+  </div>
 
 
-    <!-- mathjax -->
-    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
-    <script type="text/x-mathjax-config">
+  <!-- mathjax -->
+  <script type="text/javascript"
+    src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+  <script type="text/x-mathjax-config">
       // Make responsive
       MathJax.Hub.Config({
        "HTML-CSS": { linebreaks: { automatic: true } },
@@ -196,5 +253,6 @@
       });
     </script>
 
-    </body>
+</body>
+
 </html>
