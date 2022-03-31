@@ -1,0 +1,26 @@
+tsinghua-vm1	192.168.40.223
+tsinghua-vm2	192.168.40.227
+tsinghua-vm3	192.168.40.111
+tsinghua-vm4	192.168.40.194
+tsinghua-vm5	192.168.40.101
+tsinghua-vm6	192.168.40.21
+tsinghua-vm7	192.168.40.104	
+tsinghua-vm8	192.168.40.232	
+tsinghua-vm9	192.168.40.160	
+
+
+跳板机：175.102.178.148:10070 
+
+Conda:
+https://repo.anaconda.com/miniconda/Miniconda3-latest-Linux-x86_64.sh
+
+
+集群访问白名单为：
+清华校园网地址：
+166.111.*.*
+59.66.*.*
+101.5-6.*.*
+183.172-173.*.*    
+   
+北京、上海、深圳商汤公司公网IP地址亦可访问
+
